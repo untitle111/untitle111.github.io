@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for syc</title>
+    <style>
+        /* 全局居中 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* 主容器 */
+        .container {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        /* 图片容器：400x300 */
+        .image-box {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #999;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-box img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 文字容器：等宽 */
+        .text-box {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #999;
+            border-top: none; /* 避免中缝线变粗 */
+            box-sizing: border-box;
+            min-height: 100px;
+        }
+
+        .text-box p {
+            margin: 0;
+            font-size: 14px;
+            color: #444;
+        }
+
+        /* 页码 */
+        .page-num {
+            position: fixed;
+            bottom: 20px;
+            color: #999;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body onclick="flip()">
+
+    <div class="container">
+        <div class="image-box">
+            <img id="display-img" alt="之前过于沉浸在my version of the story里，但今天kinda想明白your version of the story了于是做了这个。鉴于我现在基本难以在你面前维持基本的表达能力，你可以认为是我心理有问题or what so，请允许我的拟态代替我来说以下内容——">
+        </div>
+        <div class="text-box">
+            <p id="display-desc">点击屏幕任何地方即刻翻页。请认真阅读！</p>
+        </div>
+    </div>
+
+    <div class="page-num">
+        <span id="current">1</span> / 25
+    </div>
+
+    <script>
+        const total = 114514;
+        // 生成模拟数据
+        const pages = [
+            { img: "./1.jpg", desc: "这是一只猫猫。" },
+            { img: "./2.jpg", desc: "有一天。猫猫在街上嗅到了有趣的人类。" },
+            { img: "./3.jpg", desc: "猫猫喜欢听有趣的人类讲他有趣的想法。" },
+            { img: "./4.jpg", desc: "猫猫也喜欢蜷缩在人类的怀中。人类的身体好温暖……" },
+            { img: "./5.jpg", desc: "猫猫希望人类能领养它。但人类没有同意。" },
+            { img: "./6.jpg", desc: "但没有关系！猫猫和人类还是玩得很开心。" },
+            { img: "./7.jpg", desc: "后来发生了些事……" },
+            { img: "./8.jpg", desc: "猫猫好像把人类挠伤了。" },
+            { img: "./9.jpg", desc: "猫猫对不起人类。" },
+            { img: "./10.jpg", desc: "而且猫猫也不开心。" },
+            { img: "./11.jpg", desc: "猫猫和人类之间似乎没有之前那么轻松了。" },
+            { img: "./12.jpg", desc: "于是猫猫跑了。" },
+            { img: "./7.jpg", desc: "对不起。猫猫不能做人类的朋友了。它也很喜欢过去的日子。但它好像做了很多错事。它不知道怎么回去了。" },
+            { img: "./13.jpg", desc: "虽然人类有的时候让猫猫很伤心。但是猫猫想说：" },
+            { img: "./13.jpg", desc: "总体上来看。人类是一个很好的人类。" },
+            { img: "./13.jpg", desc: "总体上来看。人类是一个很好的人类。人类是一个有趣的人类。" },
+            { img: "./13.jpg", desc: "总体上来看。人类是一个很好的人类。人类是一个有趣的人类。人类是一个很——厉害的人类！" },
+            { img: "./13.jpg", desc: "猫猫喜欢这个人类。" },
+            { img: "./13.jpg", desc: "猫猫希望他不只能够作为一个正常的学生从rdfz健康的毕业。" },
+            { img: "./13.jpg", desc: "也可以一直做一个快乐的人类。" },
+            { img: "./7.jpg", desc: "猫猫还是喜欢快乐的人类。" },
+            { img: "./7.jpg", desc: "嗯……" },
+            { img: "./7.jpg", desc: "没有了。" },
+            { img: "./7.jpg", desc: "(♥️)" },
+            { img: "./7.jpg", desc: "The End." },
+        ];
+
+        let idx = -1;
+
+        function flip() {
+            idx = (idx + 1) % total;
+            
+            // 直接更新内容，无延迟
+            document.getElementById('display-img').src = pages[idx].img;
+            document.getElementById('display-desc').innerText = pages[idx].desc;
+            document.getElementById('current').innerText = idx + 1;
+        }
+    </script>
+</body>
+</html>
